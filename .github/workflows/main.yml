@@ -1,20 +1,17 @@
-name: Deploy
-
+name: Test Run
 on:
-  push:
-    branches:
-    - master
-
+  push
 jobs:
-  deploy_lambda:
+  lambda:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@master
+      - run: echo "THIS IS A TEST PACKAGE" > file.txt
+      - run: zip lambda.zip file.txt
+      - uses: stcalica/update-lambda
         with:
-          node-version: '18'
-      - name: npm install
-        env:
-          CI: true
-        run: |
-          npm ci
+          package: lambda.zip
+          function-name: DEREK-TEST-FUNCTION
+          AWS_REGION: us-east-1
+          AWS_SECRET_ID: 908115985148
+          AWS_SECRET_KEY: AKIA5G37OIL6IXDZQEMR
