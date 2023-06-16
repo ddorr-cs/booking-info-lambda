@@ -1,16 +1,33 @@
-name: AWS Update Lambda Action
-on:
-  push
+name: deploy to lambda
+on: [push]
 jobs:
-  lambda:
+  deploy_source:
+    name: build and deploy lambda
+    strategy:
+      matrix:
+        node-version: [16.x]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - run: zip lambda.zip index.mjs
-      - uses: stcalica/update-lambda
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
         with:
-          package: lambda.zip
-          function-name: qa-booking-info
-          AWS_REGION: us-east-1
-          AWS_SECRET_ID: 908115985148
-          AWS_SECRET_KEY: AKIA5G37OIL6IXDZQEMR
+          node-version: ${{ matrix.node-version }}
+      - name: npm install and build
+        run: |
+          npm ci
+          npm run build --if-present
+        env:
+          CI: true
+      - name: zip
+        uses: montudor/action-zip@v0.1.0
+        with:
+          args: zip -qq -r ./bundle.zip ./
+      - name: default deploy
+        uses: appleboy/lambda-action@master
+        with:
+          aws_access_key_id: 908115985148
+          aws_secret_access_key: AKIA5G37OIL6IXDZQEMR
+          aws_region: us-east-1
+          function_name: qa-booking-info
+          zip_file: bundle.zip
