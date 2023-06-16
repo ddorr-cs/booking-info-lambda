@@ -1,4 +1,4 @@
-name: Test Run
+name: AWS Update Lambda Action
 on:
   push
 jobs:
@@ -7,7 +7,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: zip lambda.zip index.mjs
-      - uses: stcalica/update-lambda
+      - uses: stcalica/update-lambda@0.0.2
         with:
           package: lambda.zip
           function-name: qa-booking-info
