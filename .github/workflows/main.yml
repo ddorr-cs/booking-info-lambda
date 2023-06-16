@@ -26,7 +26,7 @@ jobs:
       - name: default deploy
         uses: appleboy/lambda-action@master
         with:
-          aws_access_key_id: 908115985148
+          aws_access_key_id: ddorr@clubspeed.com
           aws_secret_access_key: AKIA5G37OIL6IXDZQEMR
           aws_region: us-east-1
           function_name: qa-booking-info
