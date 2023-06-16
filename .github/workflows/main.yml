@@ -6,12 +6,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - run: echo "THIS IS A TEST PACKAGE" > file.txt
-      - run: zip lambda.zip file.txt
+      - run: zip lambda.zip index.mjs
       - uses: stcalica/update-lambda
         with:
           package: lambda.zip
-          function-name: DEREK-TEST-FUNCTION
+          function-name: qa-booking-info
           AWS_REGION: us-east-1
           AWS_SECRET_ID: 908115985148
           AWS_SECRET_KEY: AKIA5G37OIL6IXDZQEMR
