@@ -67,7 +67,7 @@ export const handler = async(event) => {
   }
 
   // Build API response
-  const responser = {
+  const response = {
     statusCode: statusCode,
     body: JSON.parse(JSON.stringify(result)),
   };
