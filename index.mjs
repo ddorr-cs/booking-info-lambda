@@ -1,22 +1,5 @@
 import sql from "mssql";
 
-//let region = process.env.AWS_REGION
-
-// const config = {
-//   port: parseInt(1433, 10),
-//   server: "clubspeed.csesaa1403zr.us-east-1.rds.amazonaws.com",
-//   user: "derek",                // api.dev
-//   password: "P@$$w0rd1Derek",   // D3v@p1T3$$t1ng
-//   database: "ClubspeedV9_Test",
-//   stream: false,
-//   options: {
-//     trustedConnection: true,
-//     encrypt: true,
-//     enableArithAbort: true,
-//     trustServerCertificate: true,
-//   },
-// };
-
 const config = {
   port: parseInt(process.env.db_port, 10),
   server: process.env.db_server,
@@ -34,10 +17,6 @@ const config = {
 
 
 export const handler = async(event) => {
-  // const response1 = {
-  //   body: event,
-  // };
-  // return response1;
   
   // Mark beginning of query time
   const startTime = new Date().toISOString().replace('T', ' ').replace('Z', '');
@@ -71,21 +50,8 @@ export const handler = async(event) => {
     statusCode: statusCode,
     body: JSON.parse(JSON.stringify(result)),
   };
+
   return response;
-
-  // // Build API response
-  // const response = {
-  //   statusCode: statusCode,
-  //   body: JSON.stringify({
-  //       "bookingInfo": result,
-  //       "size": resultSize,
-  //   }),
-  // };
-
-  // // console.log(response);
-
-  // return response;
-  
 };
 
 
