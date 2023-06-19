@@ -66,6 +66,14 @@ export const handler = async(event) => {
     statusCode = 404;
   }
 
+  var myRes1 = JSON.parse(JSON.stringify(result))
+  // Build API response
+  const response1 = {
+    statusCode: statusCode,
+    body: myRes1,
+  };
+  return response1;
+
   // Build API response
   const response = {
     statusCode: statusCode,
