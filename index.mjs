@@ -70,7 +70,7 @@ export const handler = async(event) => {
   const response = {
     statusCode: statusCode,
     body: JSON.stringify({
-        "bookingInfo": result.recordset,
+        "bookingInfo": result,
         "size": resultSize,
     }),
   };
