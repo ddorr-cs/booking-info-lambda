@@ -66,26 +66,25 @@ export const handler = async(event) => {
     statusCode = 404;
   }
 
-  var myRes1 = JSON.parse(JSON.stringify(result))
   // Build API response
-  const response1 = {
+  const responser = {
     statusCode: statusCode,
-    body: myRes1,
+    body: JSON.parse(JSON.stringify(result)),
   };
-  return response1;
-
-  // Build API response
-  const response = {
-    statusCode: statusCode,
-    body: JSON.stringify({
-        "bookingInfo": result,
-        "size": resultSize,
-    }),
-  };
-
-  // console.log(response);
-
   return response;
+
+  // // Build API response
+  // const response = {
+  //   statusCode: statusCode,
+  //   body: JSON.stringify({
+  //       "bookingInfo": result,
+  //       "size": resultSize,
+  //   }),
+  // };
+
+  // // console.log(response);
+
+  // return response;
   
 };
 
