@@ -17,6 +17,14 @@ const config = {
 
 
 export const handler = async(event) => {
+
+  // Build API response
+  const response1 = {
+    statusCode: statusCode,
+    body: JSON.parse(JSON.stringify(event)),
+  };
+
+  return response1;
   
   // Mark beginning of query time
   const startTime = new Date().toISOString().replace('T', ' ').replace('Z', '');
