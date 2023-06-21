@@ -19,12 +19,12 @@ const config = {
 export const handler = async(event) => {
 
   // Build API response
-  const response1 = {
-    statusCode: statusCode,
-    body: JSON.parse(JSON.stringify(event)),
-  };
+  // const response1 = {
+  //   statusCode: statusCode,
+  //   body: JSON.parse(JSON.stringify(event)),
+  // };
 
-  return response1;
+  // return response1;
   
   // Mark beginning of query time
   const startTime = new Date().toISOString().replace('T', ' ').replace('Z', '');
@@ -92,7 +92,7 @@ export const UpdateClubspeedAPILogs = async(logevent) => {
     .request()
     .input("ClientId", sql.NVarChar, ("ClientId" in logevent ? logevent["ClientId"] : ''))
     .input("Header", sql.NVarChar, ("HttpMethod" in logevent ? logevent["HttpMethod"] : ''))
-    .input("Path", sql.NVarChar, ("Path" in logevent ? logevent["Path"] : ''))
+    .input("Path", sql.NVarChar, ("Path" in logevent ? logevent["headers"]["Host"] + "/" + logevent["Path"]: ''))
     .input("PacketSize", sql.Int, ("PacketSize" in logevent ? logevent["PacketSize"] : 0))
     .input("StartTime", sql.DateTime, logevent["StartTime"])
     .input("EndTime", sql.DateTime, logevent["EndTime"])
