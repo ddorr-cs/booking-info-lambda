@@ -92,7 +92,7 @@ export const UpdateClubspeedAPILogs = async(logevent) => {
     .request()
     .input("ClientId", sql.NVarChar, ("ClientId" in logevent ? logevent["ClientId"] : ''))
     .input("Header", sql.NVarChar, ("HttpMethod" in logevent ? logevent["HttpMethod"] : ''))
-    .input("Path", sql.NVarChar, ("Path" in logevent ? logevent["headers"]["Host"] + "/" + logevent["Path"]: ''))
+    .input("Path", sql.NVarChar, ("Path" in logevent ? logevent["headers"]["Host"] + logevent["Path"]: ''))
     .input("PacketSize", sql.Int, ("PacketSize" in logevent ? logevent["PacketSize"] : 0))
     .input("StartTime", sql.DateTime, logevent["StartTime"])
     .input("EndTime", sql.DateTime, logevent["EndTime"])
