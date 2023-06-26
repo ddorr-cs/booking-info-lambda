@@ -19,12 +19,12 @@ const config = {
 export const handler = async(event) => {
 
   // Build API response
-  const response1 = {
-    statusCode: 100,
-    body: "hello",
-  };
+  // const response1 = {
+  //   statusCode: 100,
+  //   body: "hello",
+  // };
 
-  return response1;
+  // return response1;
   
   // Mark beginning of query time
   const startTime = new Date().toISOString().replace('T', ' ').replace('Z', '');
@@ -92,7 +92,7 @@ export const GetBookingEventInformation = async(eventParams) => {
 export const formatCustomerName = (name) => {
   var formattedName = "";
   formattedName = name;
-  formattedName.replace("'", "''");
+  formattedName.replace(/'/g, "''");
   
   return formattedName;
 }
