@@ -92,7 +92,7 @@ export const GetBookingEventInformation = async(eventParams) => {
 export const formatCustomerName = (name) => {
   var formattedName = "";
   formattedName = name;
-  formattedName.replace(/'/g, "''");
+  formattedName.replace("'", "''");
   
   return formattedName;
 }
