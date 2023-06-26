@@ -76,8 +76,8 @@ export const GetBookingEventInformation = async(eventParams) => {
     .input("APIKey", sql.NVarChar, ("x-api-key" in eventParams["headers"] ? eventParams["headers"]["x-api-key"] : ''))
     .input("ConfirmationCode", sql.NVarChar, ("ConfirmationCode" in eventParams ? eventParams["ConfirmationCode"] : ''))
     .input("phone", sql.NVarChar, ("Phone" in eventParams ? eventParams["Phone"] : ''))
-    .input("FirstName", sql.NVarChar, ("FirstName" in eventParams ? eventParams["FirstName"] : ''))
-    .input("LastName", sql.NVarChar, ("LastName" in eventParams ? eventParams["LastName"] : ''))
+    .input("FirstName", sql.NVarChar, ("FirstName" in eventParams ? formatCustomerName(eventParams["FirstName"]) : ''))
+    .input("LastName", sql.NVarChar, ("LastName" in eventParams ? formatCustomerName(eventParams["LastName"]) : ''))
     .input("Email", sql.NVarChar, ("Email" in eventParams ? eventParams["Email"] : ''))
     .execute("GetBookingEventInformation");
 
@@ -87,6 +87,14 @@ export const GetBookingEventInformation = async(eventParams) => {
 
   return result;
   
+}
+
+export function formatCustomerName(name) {
+  var formattedName = "";
+  formattedName = name;
+  formattedName.replace(/'/g, "''");
+  
+  return formattedName;
 }
 
 
