@@ -48,7 +48,7 @@ export const handler = async(event) => {
   // Log details of API Request
   const logResult = await UpdateClubspeedAPILogs(event);
   
-  var recordSet = ""
+  var recordSet = JSON.stringify({})
 
   // Return correct status codes if query failed
   if (result['recordset'] === undefined) {
