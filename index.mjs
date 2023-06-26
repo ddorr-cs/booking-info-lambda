@@ -47,16 +47,20 @@ export const handler = async(event) => {
   
   // Log details of API Request
   const logResult = await UpdateClubspeedAPILogs(event);
+  
+  var recordSet = ""
 
   // Return correct status codes if query failed
   if (result['recordset'] === undefined) {
     statusCode = 404;
+  } else {
+    recordSet = JSON.stringify(result['recordset'])
   }
-
+  //JSON.parse(JSON.stringify(result))
   // Build API response
   const response = {
     statusCode: statusCode,
-    body: JSON.parse(JSON.stringify(result)),
+    body: JSON.parse(recordSet),
   };
 
   return response;
