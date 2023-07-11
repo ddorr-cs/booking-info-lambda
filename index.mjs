@@ -19,12 +19,12 @@ const config = {
 export const handler = async(event) => {
 
   // Build API response
-  // const response1 = {
-  //   statusCode: 100,
-  //   body: "hello",
-  // };
+  const response1 = {
+    statusCode: 100,
+    body: JSON.stringify(event),
+  };
 
-  // return response1;
+  return response1;
   
   // Mark beginning of query time
   const startTime = new Date().toISOString().replace('T', ' ').replace('Z', '');
