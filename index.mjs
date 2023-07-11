@@ -70,7 +70,7 @@ export const handler = async(event) => {
 export const GetBookingEventInformation = async(eventParams) => {
   var pool = await sql.connect(config);
   //yyyy-mm-dd or mm-dd-yyyy
-  if ("EventDate" in eventParams) {
+  if ("EventDate" in eventParams && String(eventParams["EventDate"]).length > 1) {
     var dateParts = eventParams["EventDate"].split("-");
     var year = '';
     var month = '';
