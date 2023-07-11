@@ -18,13 +18,13 @@ const config = {
 
 export const handler = async(event) => {
 
-  // Build API response
-  const response1 = {
-    statusCode: 100,
-    body: event,
-  };
+  // // Build API response
+  // const response1 = {
+  //   statusCode: 100,
+  //   body: event,
+  // };
 
-  return response1;
+  // return response1;
   
   // Mark beginning of query time
   const startTime = new Date().toISOString().replace('T', ' ').replace('Z', '');
@@ -69,6 +69,28 @@ export const handler = async(event) => {
 
 export const GetBookingEventInformation = async(eventParams) => {
   var pool = await sql.connect(config);
+  //yyyy-mm-dd or mm-dd-yyyy
+  if ("EventDate" in eventParams) {
+    var dateParts = eventParams["EventDate"].split("-");
+    var year = '';
+    var month = '';
+    var day = '';
+    var formattedDate = '';
+    
+    if (String(dateParts[2]).length >= 3) {
+      year = dateParts[2];
+      day = dateParts[1];
+      month = dateParts[0];
+    } else {
+      year = dateParts[0];
+      month = dateParts[1];
+      day = dateParts[2];
+    }
+
+    formattedDate = year + "-" + month + "-" + day;
+    
+    eventParams["EventDate"] = formattedDate;
+  }
 
   const result = await pool
     .request()
