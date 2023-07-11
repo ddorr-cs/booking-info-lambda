@@ -79,6 +79,7 @@ export const GetBookingEventInformation = async(eventParams) => {
     .input("FirstName", sql.NVarChar, ("FirstName" in eventParams ? formatCustomerName(eventParams["FirstName"]) : ''))
     .input("LastName", sql.NVarChar, ("LastName" in eventParams ? formatCustomerName(eventParams["LastName"]) : ''))
     .input("Email", sql.NVarChar, ("Email" in eventParams ? eventParams["Email"] : ''))
+    .input("EventDate", sql.NVarChar, ("EventDate" in eventParams ? eventParams["EventDate"] : ''))
     .execute("GetBookingEventInformation");
 
   // console.log(result);
