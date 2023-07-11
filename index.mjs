@@ -21,7 +21,7 @@ export const handler = async(event) => {
   // Build API response
   const response1 = {
     statusCode: 100,
-    body: JSON.stringify(event),
+    body: event,
   };
 
   return response1;
