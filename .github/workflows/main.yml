@@ -37,4 +37,4 @@ jobs:
           aws-region: us-east-1
 
       - name: Upload to Lambda
-        run: aws lambda update-function-code --function-name dev-booking-info --zip-file fileb://lambda.zip
+        run: aws lambda update-function-code --function-name booking-info --zip-file fileb://lambda.zip
