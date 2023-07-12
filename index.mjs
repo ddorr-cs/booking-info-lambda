@@ -77,7 +77,7 @@ export const GetBookingEventInformation = async(eventParams) => {
     var day = '';
     var formattedDate = '';
     
-    if (String(dateParts[2]).length = 4) {
+    if (String(dateParts[2]).length >= 3) {
       year = dateParts[2];
       day = dateParts[1];
       month = dateParts[0];
